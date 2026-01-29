@@ -1,6 +1,13 @@
 # Bernova MCP Server
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
+[![Bun](https://img.shields.io/badge/Bun-1.0+-black.svg)](https://bun.sh)
+[![MCP](https://img.shields.io/badge/MCP-Compatible-green.svg)](https://modelcontextprotocol.io)
+
 Model Context Protocol (MCP) server for [Bernova](https://github.com/kubit-ui/bernova) - The CSS-in-JS library that allows AI agents to interact with and manage Bernova styles programmatically.
+
+> **⚡ Now optimized for Bun!** 3x faster installation, 10x faster startup. See [BUN_GUIDE.md](BUN_GUIDE.md) for details.
 
 ## Features
 
@@ -14,14 +21,22 @@ Model Context Protocol (MCP) server for [Bernova](https://github.com/kubit-ui/be
 
 ## Installation
 
+### Using Bun (Recommended)
+
 ```bash
-npm install bernova-mcp-server
+bun add bernova-mcp
 ```
 
 Or install globally:
 
 ```bash
-npm install -g bernova-mcp-server
+bun add -g bernova-mcp
+```
+
+### Using npm
+
+```bash
+npm install bernova-mcp
 ```
 
 ## Quick Start
@@ -29,12 +44,20 @@ npm install -g bernova-mcp-server
 ### 1. Install Bernova in your project
 
 ```bash
+# Using Bun (recommended)
+bun add bernova
+
+# Using npm
 npm install bernova
 ```
 
 ### 2. Run the MCP server
 
 ```bash
+# Using Bun
+bunx bernova-mcp
+
+# Using npx
 npx bernova-mcp
 ```
 
@@ -42,15 +65,29 @@ npx bernova-mcp
 
 Add to your MCP client configuration (e.g., Claude Desktop):
 
+**Using Bun (Recommended):**
 ```json
 {
   "mcpServers": {
     "bernova": {
-      "command": "npx",
-      "args": ["bernova-mcp"]
+      "command": "bun",
+      "args": ["run", "/absolute/path/to/bernova-mcp/dist/index.js"]
     }
   }
 }
+```
+
+**Using Node:**
+```json
+{
+  "mcpServers": {
+    "bernova": {
+      "command": "node",
+      "args": ["/absolute/path/to/bernova-mcp/dist/index.js"]
+    }
+  }
+}
+```
 ```
 
 ## Available Tools

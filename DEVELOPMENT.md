@@ -29,21 +29,43 @@ bernova-mcp-server/
 ## Development Commands
 
 ### Install dependencies
+
+**Using Bun (Recommended):**
+```bash
+bun install
+```
+
+**Using npm:**
 ```bash
 npm install
 ```
 
 ### Build (compile TypeScript)
+
 ```bash
+bun run build
+# or
 npm run build
 ```
 
 ### Watch mode (auto-recompile on changes)
+
 ```bash
+bun run dev
+# or
 npm run dev
 ```
 
 ### Run the server
+
+**Using Bun:**
+```bash
+bun start
+# or
+bun run dist/index.js
+```
+
+**Using Node:**
 ```bash
 npm start
 # or
@@ -110,8 +132,8 @@ case 'my_new_tool':
 ### 3. Rebuild and test
 
 ```bash
-npm run build
-node dist/index.js
+bun run build
+bun run dist/index.js
 ```
 
 ## Code Style

@@ -17,30 +17,60 @@ To use the Bernova MCP Server with Claude Desktop, add this configuration to you
 
 Add the following to your `claude_desktop_config.json`:
 
+### Option 1: Using Bun (Recommended - Faster)
+
 ```json
 {
   "mcpServers": {
     "bernova": {
-      "command": "node",
+      "command": "bun",
       "args": [
-        "/absolute/path/to/bernova-mcp-server/dist/index.js"
+        "run",
+        "/absolute/path/to/bernova-mcp/dist/index.js"
       ]
     }
   }
 }
 ```
 
-## Using with npx (if installed globally or in project)
+### Option 2: Using Node.js
+
+```json
+{
+  "mcpServers": {
+    "bernova": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/bernova-mcp/dist/index.js"
+      ]
+    }
+  }
+}
+```
+
+## Using with package managers (if installed globally or in project)
+
+### With Bun:
+
+```json
+{
+  "mcpServers": {
+    "bernova": {
+      "command": "bunx",
+      "args": ["bernova-mcp"]
+    }
+  }
+}
+```
+
+### With npm:
 
 ```json
 {
   "mcpServers": {
     "bernova": {
       "command": "npx",
-      "args": [
-        "-y",
-        "bernova-mcp-server"
-      ]
+      "args": ["-y", "bernova-mcp"]
     }
   }
 }
@@ -50,13 +80,29 @@ Add the following to your `claude_desktop_config.json`:
 
 If you're developing the MCP server locally:
 
+### Windows (Bun):
+```json
+{
+  "mcpServers": {
+    "bernova": {
+      "command": "bun",
+      "args": [
+        "run",
+        "C:\\Users\\YourUser\\path\\to\\bernova-mcp\\dist\\index.js"
+      ]
+    }
+  }
+}
+```
+
+### Windows (Node):
 ```json
 {
   "mcpServers": {
     "bernova": {
       "command": "node",
       "args": [
-        "C:\\Users\\YourUser\\path\\to\\bernova-mcp-server\\dist\\index.js"
+        "C:\\Users\\YourUser\\path\\to\\bernova-mcp\\dist\\index.js"
       ]
     }
   }
@@ -99,25 +145,37 @@ Check the Claude Desktop logs:
 - macOS: `~/Library/Logs/Claude/mcp*.log`
 - Windows: `%APPDATA%\Claude\logs\mcp*.log`
 
-### Node version
+### Runtime requirements
 
-Ensure you have Node.js >= 20.0.0:
+**If using Bun:**
 ```bash
-node --version
+bun --version  # Should be >= 1.0.0
+```
+
+**If using Node.js:**
+```bash
+node --version  # Should be >= 20.0.0
 ```
 
 ### Permissions
 
 On Unix systems, ensure the script is executable:
 ```bash
-chmod +x /path/to/bernova-mcp-server/dist/index.js
+chmod +x /path/to/bernova-mcp/dist/index.js
 ```
 
 ### Testing manually
 
 You can test the server manually:
+
+**Using Bun:**
 ```bash
-node /path/to/bernova-mcp-server/dist/index.js
+bun run /path/to/bernova-mcp/dist/index.js
+```
+
+**Using Node:**
+```bash
+node /path/to/bernova-mcp/dist/index.js
 ```
 
 The server should output:
