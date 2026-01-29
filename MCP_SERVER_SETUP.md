@@ -5,10 +5,9 @@ Configure Bernova MCP Server to work with AI-powered IDEs that support the Model
 ## Supported IDEs
 
 - ✅ **Claude Desktop** - Anthropic's desktop app
-- ✅ **VS Code** - With Cline extension
+- ✅ **VS Code** - Native MCP
 - ✅ **Cursor** - AI-first code editor
 - ✅ **Windsurf** - Codeium's IDE
-- ✅ **Zed** - High-performance editor
 - ✅ **Any MCP-compatible IDE**
 
 ---
@@ -18,16 +17,19 @@ Configure Bernova MCP Server to work with AI-powered IDEs that support the Model
 ### Configuration File Location
 
 **macOS:**
+
 ```
 ~/Library/Application Support/Claude/claude_desktop_config.json
 ```
 
 **Windows:**
+
 ```
 %APPDATA%\Claude\claude_desktop_config.json
 ```
 
 **Linux:**
+
 ```
 ~/.config/Claude/claude_desktop_config.json
 ```
@@ -67,7 +69,10 @@ Configure Bernova MCP Server to work with AI-powered IDEs that support the Model
   "mcpServers": {
     "bernova": {
       "command": "bun",
-      "args": ["run", "C:\\Users\\YourUser\\Projects\\bernova-mcp\\dist\\index.js"]
+      "args": [
+        "run",
+        "C:\\Users\\YourUser\\Projects\\bernova-mcp\\dist\\index.js"
+      ]
     }
   }
 }
@@ -75,19 +80,11 @@ Configure Bernova MCP Server to work with AI-powered IDEs that support the Model
 
 ---
 
-## 💻 VS Code (with Cline Extension)
+## 💻 VS Code (Native MCP)
 
-[Cline](https://github.com/cline/cline) is a VS Code extension that supports MCP.
+VS Code includes native support for MCP servers.
 
-### 1. Install Cline
-
-```bash
-code --install-extension saoudrizwan.claude-dev
-```
-
-Or search "Cline" in VS Code Extensions marketplace.
-
-### 2. Configure MCP
+### 1. Configure MCP
 
 Open VS Code Settings (JSON) and add:
 
@@ -95,7 +92,7 @@ Open VS Code Settings (JSON) and add:
 
 ```json
 {
-  "cline.mcpServers": {
+  "mcpServers": {
     "bernova": {
       "command": "bun",
       "args": ["run", "/absolute/path/to/bernova-mcp/dist/index.js"]
@@ -108,18 +105,21 @@ Open VS Code Settings (JSON) and add:
 
 ```json
 {
-  "cline.mcpServers": {
+  "mcpServers": {
     "bernova": {
       "command": "bun",
-      "args": ["run", "C:\\Users\\YourUser\\Projects\\bernova-mcp\\dist\\index.js"]
+      "args": [
+        "run",
+        "C:\\Users\\YourUser\\Projects\\bernova-mcp\\dist\\index.js"
+      ]
     }
   }
 }
 ```
 
-### 3. Restart VS Code
+### 2. Restart VS Code
 
-After configuration, restart VS Code and open Cline panel.
+After configuration, restart VS Code and open the MCP/AI panel.
 
 ---
 
@@ -130,16 +130,19 @@ Cursor has native MCP support.
 ### Configuration File Location
 
 **macOS:**
+
 ```
 ~/Library/Application Support/Cursor/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json
 ```
 
 **Windows:**
+
 ```
 %APPDATA%\Cursor\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json
 ```
 
 **Linux:**
+
 ```
 ~/.config/Cursor/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json
 ```
@@ -175,16 +178,19 @@ Create or edit the MCP settings file:
 ### Configuration File Location
 
 **macOS:**
+
 ```
 ~/Library/Application Support/Windsurf/mcp_settings.json
 ```
 
 **Windows:**
+
 ```
 %APPDATA%\Windsurf\mcp_settings.json
 ```
 
 **Linux:**
+
 ```
 ~/.config/Windsurf/mcp_settings.json
 ```
@@ -212,54 +218,6 @@ Create or edit the MCP settings file:
    - **Name:** Bernova
    - **Command:** `bun run /path/to/bernova-mcp/dist/index.js`
 5. Save and restart Windsurf
-
----
-
-## ⚡ Zed Editor
-
-Zed has built-in support for MCP servers.
-
-### Configuration File Location
-
-**macOS/Linux:**
-```
-~/.config/zed/settings.json
-```
-
-**Windows:**
-```
-%APPDATA%\Zed\settings.json
-```
-
-### Configuration
-
-```json
-{
-  "context_servers": {
-    "bernova": {
-      "command": {
-        "path": "bun",
-        "args": ["run", "/absolute/path/to/bernova-mcp/dist/index.js"]
-      }
-    }
-  }
-}
-```
-
-### Alternative with Node.js
-
-```json
-{
-  "context_servers": {
-    "bernova": {
-      "command": {
-        "path": "node",
-        "args": ["/absolute/path/to/bernova-mcp/dist/index.js"]
-      }
-    }
-  }
-}
-```
 
 ---
 
@@ -337,7 +295,11 @@ Run multiple MCP servers simultaneously:
     },
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/files"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/path/to/files"
+      ]
     },
     "git": {
       "command": "npx",
@@ -398,6 +360,7 @@ Once configured, you can interact with the AI in your IDE:
 **You:** "Create a new Bernova theme with primary colors"
 
 **AI will:**
+
 1. Use `create_config` to initialize
 2. Use `add_css_variable` to add colors
 3. Use `compile_styles` to generate CSS
@@ -405,6 +368,7 @@ Once configured, you can interact with the AI in your IDE:
 **You:** "Add a responsive button component with hover effects"
 
 **AI will:**
+
 1. Use `create_component` with button styles
 2. Add `$pseudoClasses` for hover
 3. Add `$mediaQueries` for responsiveness
@@ -422,8 +386,8 @@ Once configured, you can interact with the AI in your IDE:
   - macOS: `~/Library/Logs/Claude/mcp*.log`
   - Windows: `%APPDATA%\Claude\logs\mcp*.log`
 
-- **VS Code/Cursor:**
-  - Output panel → Select "Cline" or "MCP"
+- **VS Code:**
+  - Output panel → Select "MCP"
 
 - **Windsurf:**
   - Developer Console (Ctrl+Shift+I)
@@ -431,11 +395,13 @@ Once configured, you can interact with the AI in your IDE:
 ### Runtime Requirements
 
 **If using Bun:**
+
 ```bash
 bun --version  # Should be >= 1.0.0
 ```
 
 **If using Node.js:**
+
 ```bash
 node --version  # Should be >= 20.0.0
 ```
@@ -455,16 +421,19 @@ chmod +x /path/to/bernova-mcp/dist/index.js
 ### Test Manually
 
 **Using Bun:**
+
 ```bash
 bun run /path/to/bernova-mcp/dist/index.js
 ```
 
 **Using Node:**
+
 ```bash
 node /path/to/bernova-mcp/dist/index.js
 ```
 
 **Expected output:**
+
 ```
 Bernova MCP Server running on stdio
 ```
@@ -474,6 +443,7 @@ Bernova MCP Server running on stdio
 #### "Command not found: bun"
 
 Install Bun:
+
 ```bash
 # macOS/Linux
 curl -fsSL https://bun.sh/install | bash
@@ -499,29 +469,28 @@ Another MCP server might be running. Restart your IDE.
 ## 🎯 IDE-Specific Tips
 
 ### Claude Desktop
+
 - Supports multiple MCP servers natively
 - Best performance with Bun
 - Logs are easily accessible
 
-### VS Code + Cline
-- Can debug MCP servers with VS Code debugger
+### VS Code
+
+- Built-in MCP support
 - Settings sync across devices
-- Extensions marketplace has MCP tools
+- Can debug MCP servers with VS Code debugger
 
 ### Cursor
+
 - Native MCP support in latest versions
 - UI for managing MCP servers
 - Fast startup and hot reload
 
 ### Windsurf
+
 - Codeium AI integration
 - Multi-model support
 - Cloud sync for settings
-
-### Zed
-- Lightweight and fast
-- Built-in collaboration
-- Rust-based performance
 
 ---
 
@@ -531,10 +500,8 @@ Another MCP server might be running. Restart your IDE.
 - [Bernova Documentation](https://github.com/kubit-ui/bernova)
 - [Bun Documentation](https://bun.sh/docs)
 - [Claude Desktop](https://claude.ai/download)
-- [Cline (VS Code)](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
 - [Cursor](https://cursor.sh)
 - [Windsurf](https://codeium.com/windsurf)
-- [Zed](https://zed.dev)
 
 ---
 
