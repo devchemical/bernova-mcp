@@ -9,6 +9,17 @@ Model Context Protocol (MCP) server for [Bernova](https://github.com/kubit-ui/be
 
 > **⚡ Now optimized for Bun!** 3x faster installation, 10x faster startup. See [BUN_GUIDE.md](BUN_GUIDE.md) for details.
 
+## Supported IDEs
+
+- ✅ **Claude Desktop** - Anthropic's desktop app
+- ✅ **VS Code** - With Cline extension
+- ✅ **Cursor** - AI-first code editor
+- ✅ **Windsurf** - Codeium's IDE
+- ✅ **Zed** - High-performance editor
+- ✅ Any MCP-compatible IDE
+
+See [CLAUDE_DESKTOP_SETUP.md](CLAUDE_DESKTOP_SETUP.md) for detailed IDE configuration.
+
 ## Features
 
 - **Configuration Management**: Create, read, and update Bernova configurations
@@ -61,9 +72,11 @@ bunx bernova-mcp
 npx bernova-mcp
 ```
 
-### 3. Configure your MCP client
+### 3. Configure your IDE
 
-Add to your MCP client configuration (e.g., Claude Desktop):
+See complete setup guides for all supported IDEs in [CLAUDE_DESKTOP_SETUP.md](CLAUDE_DESKTOP_SETUP.md).
+
+**Quick example for Claude Desktop:**
 
 **Using Bun (Recommended):**
 ```json
@@ -72,18 +85,6 @@ Add to your MCP client configuration (e.g., Claude Desktop):
     "bernova": {
       "command": "bun",
       "args": ["run", "/absolute/path/to/bernova-mcp/dist/index.js"]
-    }
-  }
-}
-```
-
-**Using Node:**
-```json
-{
-  "mcpServers": {
-    "bernova": {
-      "command": "node",
-      "args": ["/absolute/path/to/bernova-mcp/dist/index.js"]
     }
   }
 }
